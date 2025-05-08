@@ -20,7 +20,7 @@ A web application that fetches and displays user statistics from various competi
 *   **Libraries:**
     *   `requests` (for HTTP calls)
     *   `BeautifulSoup4` (for web scraping)
-    *   `Flask-CORS` (for Cross-Origin Resource Sharing)
+    *   `Flask` (for web interface)
 
 ## Setup and Running Locally
 
@@ -29,19 +29,11 @@ A web application that fetches and displays user statistics from various competi
     git clone https://github.com/YOUR_USERNAME/Mini-projects.git
     cd Mini-projects/Coding_Profile_Summarizer
     ```
-2.  **Create and activate a virtual environment:**
-    ```bash
-    python -m venv venv
-    # On Windows
-    .\venv\Scripts\activate
-    # On macOS/Linux
-    source venv/bin/activate
-    ```
-3.  **Install dependencies:**
+2.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-4.  **Run the Flask development server:**
+3.  **Run the Flask development server:**
     ```bash
     python app.py
     ```
