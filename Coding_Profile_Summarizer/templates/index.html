@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Profile Fetcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-tie"></i>Coding Profile Summarizer</h1>
+            <p>Get your competitive programming and coding stats from various platforms.</p>
+        </header>
+
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="platform"><i class="fas fa-laptop-code"></i> Platform:</label>
+                <select id="platform" name="platform">
+                    <option value="leetcode">LeetCode</option>
+                    <option value="codechef">CodeChef</option>
+                    <option value="gfg">GeeksforGeeks</option>
+                    <option value="hackerrank">HackerRank</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+            </div>
+            <button type="submit" id="fetch-btn">
+                <span class="btn-text">Fetch Profile</span>
+                <span class="btn-icon"><i class="fas fa-search"></i></span>
+            </button>
+        </form>
+
+        <div id="loading-indicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <p>Fetching profile data, please wait...</p>
+        </div>
+
+        <div id="results-container">
+            <!-- Profile data will be displayed here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>© <span id="copyright-year"></span> Coding Profile Summarizer. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
