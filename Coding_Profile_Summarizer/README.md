@@ -20,7 +20,8 @@ A web application that fetches and displays user statistics from various competi
 *   **Libraries:**
     *   `requests` (for HTTP calls)
     *   `BeautifulSoup4` (for web scraping)
-    *   `Flask` (for web interface)
+    *   `Flask-CORS` (for Cross-Origin Resource Sharing)
+    *   `gunicorn` (for WSGI server in production)
 
 ## Setup and Running Locally
 
@@ -29,6 +30,7 @@ A web application that fetches and displays user statistics from various competi
     git clone https://github.com/YOUR_USERNAME/Mini-projects.git
     cd Mini-projects/Coding_Profile_Summarizer
     ```
+
 2.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
@@ -37,7 +39,7 @@ A web application that fetches and displays user statistics from various competi
     ```bash
     python app.py
     ```
-5.  Open your browser and navigate to `http://127.0.0.1:5000/`.
+4.  Open your browser and navigate to `http://127.0.0.1:5000/`.
 
 ## Usage
 
@@ -45,6 +47,12 @@ A web application that fetches and displays user statistics from various competi
 2.  Enter the username for that platform.
 3.  Click "Fetch Profile".
 4.  The user's statistics will be displayed.
+
+## Deployment
+
+This application is designed to be deployed with the Flask backend serving the static frontend files.
+It can be deployed to platforms like Render, Heroku, or PythonAnywhere.
+A `Procfile` is included for Gunicorn.
 
 *   **Backend API Endpoint:** `/api/fetch_profile_data` (POST request)
 
