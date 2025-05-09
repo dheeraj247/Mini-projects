@@ -7,7 +7,7 @@ A web application that fetches and displays user statistics from various competi
 ## Live Demo 🚀
 
 You can try out the live application here:
-**[View Live Application](https://your-service-name.onrender.com)**
+**[View Live Application](https://coding-profile-summarizer.onrender.com)**
 *`https://coding-profile-summarizer.onrender.com`*
 
 ## Features
