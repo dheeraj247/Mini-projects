@@ -147,7 +147,8 @@ def fetch_gfg_data(username):
     except Exception as e:
         print(f"An error occurred: {e}")
         return {"error": str(e)}
-
+data=fetch_gfg_data("deekshithk4fb")
+print(data)
 def fetch_hackerrank_data(username):
     url = f"https://www.hackerrank.com/{username}"
     headers = {
