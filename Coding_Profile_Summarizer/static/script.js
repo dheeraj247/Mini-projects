@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.error) {
                 displayError(data.error);
             } else {
-                // Pass the originally submitted username for display, as not all API responses include it
+                
                 displayData(platform, usernameInput, data);
             }
         } catch (error) {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const platformLogoUrl = platformLogos[platform];
         const platformIconClass = platformDefaultIcons[platform];
         
-        // Determine the username to display: from data if available, else from query
+        
         const displayUsername = data.username || queryUsername;
     
         // Card Header
@@ -118,12 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         cardContent += `<div class="profile-card-header-info">
                           <h2><span class="username-highlight">${displayUsername}</span></h2>`;
-        // LeetCode might have a realName in profile.realName, but it's not in the provided query.
-        // HackerRank might have a name field, but it's also not in the provided scraper's return.
+
         cardContent += `  </div>
                        </div>`; // End profile-card-header
     
-        // Profile Grid for main stats
+
         cardContent += `<div class="profile-grid">`;
     
         switch (platform) {
@@ -144,10 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardContent += createProfileItemHTML('fas fa-star-half-alt', 'Contest Rating', data.contest_rating);
                 break;
             case 'hackerrank':
-                // HackerRank specific data is mainly badges and certificates, handled below
-                // No main grid items defined in the provided Python output apart from these lists.
-                // We can add a placeholder or directly show lists.
-                // For consistency, maybe one item to confirm the user.
                 cardContent += createProfileItemHTML('fas fa-user-tag', 'Profile For', displayUsername);
                 break;
             case 'leetcode':
