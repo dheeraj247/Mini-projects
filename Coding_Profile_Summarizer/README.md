@@ -4,6 +4,12 @@
 
 A web application that fetches and displays user statistics from various competitive programming and coding platforms like LeetCode, CodeChef, GeeksforGeeks, and HackerRank.
 
+## Live Demo 🚀
+
+You can try out the live application here:
+**[View Live Application](https://your-service-name.onrender.com)**
+*`https://coding-profile-summarizer.onrender.com`*
+
 ## Features
 
 *   Fetches user rating, rank, problems solved, etc.
@@ -27,9 +33,10 @@ A web application that fetches and displays user statistics from various competi
 
 1.  **Clone the parent repository (if not already done):**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/Mini-projects.git
+    git clone https://github.com/dheeraj247/Mini-projects.git
     cd Mini-projects/Coding_Profile_Summarizer
     ```
+    *(Updated to your GitHub username)*
 
 2.  **Install dependencies:**
     ```bash
@@ -51,11 +58,10 @@ A web application that fetches and displays user statistics from various competi
 ## Deployment
 
 This application is designed to be deployed with the Flask backend serving the static frontend files.
-It can be deployed to platforms like Render, Heroku, or PythonAnywhere.
-A `Procfile` is included for Gunicorn.
+It has been deployed to Render. A `Procfile` is included for Gunicorn.
 
 *   **Backend API Endpoint:** `/api/fetch_profile_data` (POST request)
 
 ---
 
-*This project was created by [S.Dheeraj/dheeraj247].*
+*This project was created by S.Dheeraj (dheeraj247).*
