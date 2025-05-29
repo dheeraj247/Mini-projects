@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Mini-projects/',
+  base: '/Mini-projects/react-projects/keeperlist/',
 });
