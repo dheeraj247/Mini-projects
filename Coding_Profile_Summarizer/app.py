@@ -2,6 +2,8 @@ from flask import Flask, render_template, jsonify, request
 import requests
 from bs4 import BeautifulSoup
 import re
+from flask import send_from_directory
+import os
 def fetch_codechef_data(username):
     url = f"https://www.codechef.com/users/{username}"
 
@@ -315,6 +317,10 @@ def get_profile_data_route():
         return jsonify({"error": "Invalid platform"}), 400
 
     return jsonify(result)
+
+@app.route('/google12733681e865d7c2.html')
+def google_verify():
+    return send_from_directory(os.getcwd(), 'google12733681e865d7c2.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
