@@ -4,11 +4,10 @@
 
 A web application that fetches and displays user statistics from various competitive programming and coding platforms like LeetCode, CodeChef, GeeksforGeeks, and HackerRank.
 
-## Live Demo 🚀
+## Live Demo
 
 You can try out the live application here:
-**[View Live Application](https://coding-profile-summarizer.onrender.com)**
-*`https://coding-profile-summarizer.onrender.com`*
+**[View Live Application](https://coding-profile-summarizer.onrender.com/)**
 
 ## Features
 
@@ -28,6 +27,8 @@ You can try out the live application here:
     *   `BeautifulSoup4` (for web scraping)
     *   `Flask-CORS` (for Cross-Origin Resource Sharing)
     *   `gunicorn` (for WSGI server in production)
+    *   `Selenium` & `webdriver-manager` (For browser automation to scrape dynamic content)
+    *   `Docker`: For containerizing the application
 
 ## Setup and Running Locally
 
@@ -36,17 +37,22 @@ You can try out the live application here:
     git clone https://github.com/dheeraj247/Mini-projects.git
     cd Mini-projects/Coding_Profile_Summarizer
     ```
-    *(Updated to your GitHub username)*
+2.  **(Optional but Recommended) Create and activate a virtual environment:**
+    ```bash
+    python -m venv venv
+    # On Windows: .\venv\Scripts\activate
+    # On macOS/Linux: source venv/bin/activate
+    ```
 
-2.  **Install dependencies:**
+3.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Run the Flask development server:**
+4.  **Run the Flask development server:**
     ```bash
     python app.py
     ```
-4.  Open your browser and navigate to `http://127.0.0.1:5000/`.
+5.  Open your browser and navigate to `http://127.0.0.1:5000/`.
 
 ## Usage
 
@@ -57,10 +63,12 @@ You can try out the live application here:
 
 ## Deployment
 
-This application is designed to be deployed with the Flask backend serving the static frontend files.
-It has been deployed to Render. A `Procfile` is included for Gunicorn.
+This application is containerized using **Docker** to manage its Python environment and system-level dependencies (Google Chrome for Selenium).
 
-*   **Backend API Endpoint:** `/api/fetch_profile_data` (POST request)
+It is configured for cloud deployment on platforms like Render via a `Dockerfile`. The configuration includes:
+*   Installation of system packages (`apt-get`).
+*   Installation of Python dependencies (`pip`).
+*   Running the application with a `Gunicorn` production server.
 
 ---
 
