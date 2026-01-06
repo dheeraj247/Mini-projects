@@ -19,12 +19,35 @@ def fetch_codechef_data(username):
 
     try:
         response = requests.get(url, headers=headers)
+
+        # CodeChef might return a 200 OK status even for a not found page, so we check status AND content.
         if response.status_code != 200:
+            if response.status_code == 404:
+                return {"error": f"Could not fetch data: User '{username}' not found on CodeChef."}
             return {"error": f"Failed to fetch CodeChef data for '{username}'. Status code: {response.status_code}"}
 
         soup = BeautifulSoup(response.content, "html.parser")
+
+        # --- NEW CHECK for "User Not Found" ---
+        # Check the page title or a specific element on the "not found" page.
+        # CodeChef pages for non-existent users often have a <title> like "CodeChef User Not Found"
+        if soup.title and "user not found" in soup.title.text.lower():
+            return {"error": f"Could not fetch data: User '{username}' not found on CodeChef."}
+        # Another check: look for a common "not found" message element if one exists.
+        not_found_element = soup.find("div", class_="user-profile-container--placeholder") # Example class, inspect actual page
+        if not_found_element and "could not find a user" in not_found_element.text.lower():
+            return {"error": f"Could not fetch data: User '{username}' not found on CodeChef."}
+        # --- END NEW CHECK ---
+
         rating_div = soup.find("div", class_="rating-number")
         rating = rating_div.text.strip() if rating_div else "No rating available"
+
+        # If after all checks, we still can't find a rating, it's a strong sign the user is invalid or inactive.
+        if rating == "No rating available":
+             # This can act as a final fallback check.
+             profile_name_on_page = soup.find("h1", class_="h1-style") # A common tag for the username
+             if not profile_name_on_page or username.lower() not in profile_name_on_page.text.lower():
+                 return {"error": f"Could not fetch data: User '{username}' not found or has an inactive profile on CodeChef."}
         solved_problems = "Not found"
         user_details_div = soup.find("div", class_="user-details-container")
         h3_tags = []
@@ -90,17 +113,22 @@ def fetch_gfg_data(username):
 
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
         driver.get(url)
-        
         WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.CLASS_NAME, "ScoreContainer_score-grid__zozAO"))
         )
+        
         time.sleep(2)
         page_source = driver.page_source
         
     except Exception as e:
-        if driver and "404" in driver.title:
+
+        if driver and ("404" in driver.title or "user not found" in driver.title.lower()):
+            if driver: driver.quit() 
             return {"error": f"Could not fetch data: User '{username}' not found on GeeksforGeeks."}
-        return {"error": "Failed to load GFG page content. The site may be protected or has changed."}
+        
+        if driver: driver.quit()
+        return {"error": f"Failed to load GFG page for '{username}'. The site may be protected or has changed."}
+    
     finally:
         if driver:
             driver.quit()
