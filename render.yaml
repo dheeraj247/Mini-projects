@@ -5,7 +5,7 @@ services:
     name: coding-profile-summarizer
     env: python
     plan: free
-    rootDir: Coding_Profile_summarizer
+    rootDir: Coding_Profile_Summarizer
     buildCommand: |
       pip install -r requirements.txt
       # --- UPDATED CHROME COMMANDS (NO SUDO) ---
