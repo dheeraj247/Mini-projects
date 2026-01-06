@@ -17,12 +17,14 @@ RUN apt-get update && apt-get install -y \
     # Clean up apt cache to keep image small
     && rm -rf /var/lib/apt/lists/*
 
-# Copy your requirements file and install Python packages
-COPY requirements.txt requirements.txt
+# --- UPDATED COPY COMMANDS ---
+# Copy your requirements file from the subfolder into the container's /app directory
+COPY Coding_Profile_Summarizer/requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code into the container
-COPY . .
+# Copy the rest of your application code from the subfolder into the container's /app directory
+COPY Coding_Profile_Summarizer/ .
+# --- END UPDATED COPY COMMANDS ---
 
 # Expose the port Gunicorn will run on
 EXPOSE 10000
